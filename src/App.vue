@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <h1>Vuex Counter</h1>
+    <p>Count: {{ count }}</p>
+    <p>Double Count: {{ doubleCount }}</p>
+    <button @click="increment">Increment</button>
+    <button @click="decrement">Decrement</button>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  computed: {
+    ...mapState(['count']),
+    ...mapGetters(['doubleCount']),
+  },
+  methods: {
+    ...mapActions(['increment', 'decrement']),
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
+}
+
+button {
+  margin: 5px;
 }
 </style>
